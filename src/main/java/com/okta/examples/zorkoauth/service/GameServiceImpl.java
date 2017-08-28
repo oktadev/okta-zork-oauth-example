@@ -24,7 +24,7 @@ import java.util.Base64;
 @Service
 public class GameServiceImpl implements GameService {
 
-    @Value("#{ @environment['zmachine.file'] ?: '/tmp/zork1.z3' }")
+    @Value("#{ @environment['zmachine.file'] ?: '/app/zork1.z3' }")
     String zFile;
 
     @Value("#{ @environment['zmachine.save.file.path'] ?: '/tmp' }")

@@ -18,9 +18,6 @@ public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     TokenProvider tokenProvider;
 
-    @Value("#{ @environment['okta.moreSecure.authorities'] }")
-    String[] moreSecureAuthorities;
-
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
@@ -30,6 +27,7 @@ public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/").permitAll()
             .antMatchers("/v1/instructions").permitAll()
             .antMatchers("/v1/c").fullyAuthenticated().and()
+            .cors().and()
             .csrf().ignoringAntMatchers("/v1/c").and()
             .addFilterBefore(new JWTFilter(tokenProvider), BasicAuthenticationFilter.class);
     }

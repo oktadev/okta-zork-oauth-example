@@ -101,6 +101,13 @@ because you're not authenticated.
     }
     ```    
     
+## Cross Origin Resource Sharing (CORS)
+
+You can set a list external base urls (origins) that are allowed to access the `/v1/c` endpoint. This is useful in 
+demonstrating a site that makes an ajax call and passes in a valid access token. 
+The [OIDC Playground](https://okta-oidc-fun.herokuapp.com) does just that. Its source can be found
+[here](https://github.com/oktadeveloper/okta-oidc-flows-example). 
+
 ## Learn More
 
 Curious about what's going on here? Dive into our `OIDC Primer` series:

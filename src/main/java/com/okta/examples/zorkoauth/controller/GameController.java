@@ -7,7 +7,6 @@ import com.okta.sdk.client.Client;
 import com.okta.sdk.client.Clients;
 import com.okta.sdk.resource.user.User;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -72,7 +71,6 @@ public class GameController {
         return res;
     }
 
-    @CrossOrigin
     @RequestMapping(value = "/v1/c", method = RequestMethod.POST)
     public @ResponseBody CommandResponse command(
         @RequestBody(required = false) CommandRequest commandRequest,

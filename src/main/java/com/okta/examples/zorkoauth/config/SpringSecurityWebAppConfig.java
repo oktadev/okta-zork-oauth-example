@@ -4,7 +4,6 @@ package com.okta.examples.zorkoauth.config;
 import com.okta.examples.zorkoauth.jwt.JWTFilter;
 import com.okta.examples.zorkoauth.jwt.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

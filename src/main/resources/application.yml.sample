@@ -18,8 +18,6 @@ security:
       userInfoUri: # userinfo_endpoint
       preferTokenInfo: false
       openIdConfigUri: # /.well-known/openid-configuration uri
-okta:
-  tenant:
-    uri: #https://your-tenant.oktapreview.com
-  moreSecure:
-    authorities: # comma separated list of groups that should have access to the /more-secure endpoint
+cors:
+  allowed:
+    origins: # list of origins allowed to access this app. Used in conjunction with https://github.com/oktadeveloper/okta-oidc-flows-example

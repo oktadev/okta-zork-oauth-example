@@ -1,0 +1,36 @@
+<div th:fragment="home" xmlns:th="http://www.thymeleaf.org">
+    <script src="/js/codemirror.js"></script>
+    <script src="/js/mode/shell.js"></script>
+    <script th:inline="text">
+        /*<![CDATA[*/
+        var showToken = function (token) {
+            $('#access_token_div').show();
+            $('#access_token').val(token);
+
+            $('#httpie_div').show();
+            var httpieArea = document.getElementById('httpie');
+            var httpie = CodeMirror.fromTextArea(httpieArea, {
+                mode: 'shell',
+                lineNumbers: true,
+                matchBrackets: true,
+                readOnly: true
+            });
+            httpie.setSize(null, 100);
+
+            var val = 'http POST \\\n';
+            val += '[[${redirectUri}]]v1/game';
+            val += ' \\\ncommand="look"';
+            val += ' \\\nAuthorization:"Bearer ' + token + '"';
+            httpie.setValue(val);
+        };
+
+        $(document).ready(function () {
+            var query = (location.search) ? location.search : location.href.substring(location.href.indexOf('#')+1);
+            var urlParams = new URLSearchParams(query);
+            if (urlParams.get("access_token")) {
+                showToken(urlParams.get("access_token"));
+            }
+        });
+        /*]]>*/
+    </script>
+</div>

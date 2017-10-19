@@ -1,13 +1,47 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head></head>
-<body>
-<a th:href="@{${userAuthorizationUri}(
-    client_id=${clientId},
-    response_type=token,
-    scope=openid,
-    redirect_uri=${redirectUri},
-    nonce=${nonce},
-    state=${state}
-)}">Zork It Up!</a>
-</body>
+    <head>
+        <!--/*/ <th:block th:include="fragments/head :: head"/> /*/-->
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="box col-md-10 col-md-offset-1">
+                    <div class="okta-header">
+                        <img width="300px" src="/images/OktaLogo.png"/>
+                    </div>
+
+                    <p/>
+
+                    <a th:href="@{${userAuthorizationUri}(
+                        client_id=${clientId},
+                        response_type=token,
+                        scope=openid,
+                        redirect_uri=${redirectUri},
+                        nonce=${nonce},
+                        state=${state}
+                    )}" class="btn btn-primary">Zork It Up!</a>
+
+                    <p/>
+
+                    <form class="form-horizontal" id="zork-form" method="POST" action="">
+                        <div class="form-group collapse" id="access_token_div">
+                            <label class="col-md-3 control-label" for="access_token">Access Token</label>
+                            <div class="col-md-6 val-token">
+                                <textarea class="form-control" rows="5" name="access_token" id="access_token"/>
+                            </div>
+                        </div>
+                        <div class="form-group collapse" id="httpie_div">
+                            <label class="col-md-3 control-label" for="httpie">
+                                <a href="https://httpie.org/" target="_blank">HTTPie</a> command
+                            </label>
+                            <div class="col-md-6 val-token">
+                                <textarea rows="3" name="httpie" id="httpie"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--/*/ <th:block th:include="fragments/scripts :: home"/> /*/-->
+    </body>
 </html>

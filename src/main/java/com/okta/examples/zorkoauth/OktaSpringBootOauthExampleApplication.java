@@ -17,16 +17,18 @@ public class OktaSpringBootOauthExampleApplication {
     String[] allowedOrigins;
 
     public static void main(String[] args) {
-		SpringApplication.run(OktaSpringBootOauthExampleApplication.class, args);
-	}
+        SpringApplication.run(OktaSpringBootOauthExampleApplication.class, args);
+    }
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurerAdapter() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping(VERSION + "/game").allowedOrigins(allowedOrigins);
-			}
-		};
-	}
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                if (allowedOrigins != null && allowedOrigins.length > 0) {
+                    registry.addMapping(VERSION + "/game").allowedOrigins(allowedOrigins);
+                }
+            }
+        };
+    }
 }

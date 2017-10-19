@@ -115,6 +115,10 @@ You can easily deploy this app and connect it to your own Okta tenant.
     
     ![web application](images/applications-2.png)
     
+    Later, you'll be deploying the Zork application to Heroku. Fill in the values for `Base-URIs` and
+    `Login redirect URIs` that match your Heroku app name. That is, if you name your Heroku app:
+    `okta-zork-test`, the url will be: `https://okta-zork-test.herokuapp.com`
+
     ![implicit application](images/applications-3.png)
     
     Make note of the Client ID and Client Secret for configuring the app below:

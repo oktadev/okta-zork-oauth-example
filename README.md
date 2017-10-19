@@ -11,7 +11,7 @@ But, there's a catch: All interactions with the game must be done using an [Acce
 1. From the command line, execute the following (uses [HTTPie](https://httpie.org)):
 
     ```
-    http POST https://okta-oauth-zork.herokuapp.com/v1/c
+    http POST https://okta-oauth-zork.herokuapp.com/v1/game
     ```
     
 2. You'll see a response like this:
@@ -45,7 +45,7 @@ because you're not authenticated.
 
     ```
     http POST \
-    https://okta-oauth-zork.herokuapp.com/v1/c \
+    https://okta-oauth-zork.herokuapp.com/v1/game \
     Authorization:"Bearer <access token>"
     ```  
 
@@ -73,7 +73,7 @@ because you're not authenticated.
 
     ```
     http POST \
-    https://okta-oauth-zork.herokuapp.com/v1/c \
+    https://okta-oauth-zork.herokuapp.com/v1/game \
     Authorization:"Bearer <access token>"
     command="go north"
     ```
@@ -101,12 +101,97 @@ because you're not authenticated.
     }
     ```    
     
-## Cross Origin Resource Sharing (CORS)
+    
+## Zork It Up
 
-You can set a list external base urls (origins) that are allowed to access the `/v1/c` endpoint. This is useful in 
+You can easily deploy this app and connect it to your own Okta tenant.
+
+### Setup Okta
+
+1. Setup a free Okta developer instance at [https://developer.okta.com](https://developer.okta.com)
+2. Add a new application
+
+    ![add application](images/applications-1.png)
+    
+    ![web application](images/applications-2.png)
+    
+    ![implicit application](images/applications-3.png)
+    
+    Make note of the Client ID and Client Secret for configuring the app below:
+    
+    ![implicit application](images/applications-4.png)
+    
+3. Update Profile Schema
+
+    The Zork game data, including your progress in the game, is saved to the User Profile. You need to add a custom
+    Profile Schema attribute for this.
+    
+    ![profile](images/profile-1.png)
+    
+    ![profile](images/profile-2.png)
+    
+    ![profile](images/profile-3.png)
+    
+    ![profile](images/profile-4.png)
+    
+4. Create an API Token
+
+    ![token](images/token-1.png)
+    
+    ![token](images/token-2.png)
+    
+    ![token](images/token-3.png)
+    
+    Make sure to save the token value somewhere as you'll need it below and it's only shown once:
+    
+    ![token](images/token-4.png)
+    
+    
+### Deploy Zork App To Heroku
+
+You can deploy this application to Heroku using the friendly purple button below:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+You'll need some information to properly configure the app:
+
+| Environment Variable         | Example                |
+|------------------------------|------------------------|
+| OKTA_ORG_URL                 | https://micah.okta.com |
+| OKTA_API_TOKEN               | see screenshot above   |
+| OKTA_CLIENT_ID               | see screenshot above   |
+| OKTA_CLIENT_SECRET           | see screenshot above   |
+| OKTA_AUTHORIZATION_SERVER_ID | default                |
+
+### Cross Origin Resource Sharing (CORS)
+
+You can set a list external base urls (origins) that are allowed to access the `/v1/game` endpoint. This is useful in 
 demonstrating a site that makes an ajax call and passes in a valid access token. 
 The [OIDC Playground](https://okta-oidc-fun.herokuapp.com) does just that. Its source can be found
-[here](https://github.com/oktadeveloper/okta-oidc-flows-example). 
+[here](https://github.com/oktadeveloper/okta-oidc-flows-example).
+
+Set the `CORS_ALLOWED_ORIGINS` config property with a comma separated list of base urls in heroku to allow external 
+access.
+
+### Take Okta Zork For A Spin
+
+Now that you have your own Okta tenant setup and configured and the app is deployed, it's time to see it in action!
+
+1. Browse to your heroku app. For instance: `https://okta-oauth-zork.herokuapp.com`
+
+    ![zork](images/zork-1.png)
+    
+2. When you click `Zork It Up!`, you'll be redirected to the login page
+
+    ![zork](images/zork-2.png)
+    
+3. Once you've logged in, you'll see an access token and a command to interact with Zork
+
+    ![zork](images/zork-3.png) 
+
+4. Execute the command with [HTTPie]() (a modern curl replacement)
+
+    ![zork](images/zork-4.gif)
 
 ## Learn More
 

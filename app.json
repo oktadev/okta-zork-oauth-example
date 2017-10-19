@@ -1,0 +1,29 @@
+{
+  "name": "Okta Zork",
+  "description": "This app demonstrates playing the classic Infocomm game Zork with access tokens",
+  "repository": "https://github.com/dogeared/okta-zork-oauth-example/tree/master",
+  "keywords": ["oidc", "identity", "security", "authentication"],
+  "success_url": "/",
+  "env": {
+    "OKTA_ORG_URL": {
+      "description": "The Okta organization. ex: https://micah.okta.com",
+      "value": "changeme"
+    },
+    "OKTA_API_TOKEN": {
+      "description": "The token created in your Okta org for using the API.",
+      "value": "changeme"
+    },
+    "OKTA_CLIENT_ID": {
+      "description": "The client id for the Okta OIDC application",
+      "value": "changeme"
+    },
+    "OKTA_CLIENT_SECRET": {
+      "description": "The client secret for the Okta OIDC application",
+      "value": "changeme"
+    },
+    "OKTA_AUTHORIZATION_SERVER_ID": {
+      "description": "The Okta Authorization Server id",
+      "value": "default"
+    }
+  }
+}

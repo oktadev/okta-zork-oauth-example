@@ -31,6 +31,7 @@ public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/", VERSION + "/instructions").permitAll().and()
             .cors().and()
             .csrf().ignoringAntMatchers(VERSION + "/game").and()
-            .addFilterBefore(new JWTFilter(tokenProvider), BasicAuthenticationFilter.class);
+            .addFilterBefore(new JWTFilter(tokenProvider), BasicAuthenticationFilter.class)
+            .addFilterBefore(new AjaxGameFilter(), BasicAuthenticationFilter.class);
     }
 }

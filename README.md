@@ -17,17 +17,17 @@ But, there's a catch: All interactions with the game must be done using an [Acce
 2. You'll see a response like this:
 
     ```
-    HTTP/1.1 302
+    HTTP/1.1 401
     Cache-Control: no-cache, no-store, max-age=0, must-revalidate
     Connection: keep-alive
     Content-Length: 0
-    Date: Mon, 11 Sep 2017 21:41:19 GMT
+    Date: Thu, 19 Oct 2017 17:10:32 GMT
     Expires: 0
-    Location: https://okta-oauth-zork.herokuapp.com/login
+    Pragma: no-cache
+    ...
     ```
     
-It's trying to redirect you to: `https://okta-oauth-zork.herokuapp.com/login` 
-because you're not authenticated. 
+`401` indicates you are unauthorized 
 
 ### Next, try hitting the Zork endpoint with an access token.
 
@@ -74,8 +74,8 @@ because you're not authenticated.
     ```
     http POST \
     https://okta-oauth-zork.herokuapp.com/v1/game \
+    command="go north" \
     Authorization:"Bearer <access token>"
-    command="go north"
     ```
     
     ```

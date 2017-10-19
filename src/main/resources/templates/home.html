@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<a th:href="@{${userAuthorizationUri}(
+    client_id=${clientId},
+    response_type=token,
+    scope=openid,
+    redirect_uri=${redirectUri},
+    nonce=${nonce},
+    state=${state}
+)}">Zork It Up!</a>
+</body>
+</html>

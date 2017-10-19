@@ -27,9 +27,8 @@ public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
         http
             .antMatcher("/**")
             .authorizeRequests()
-            .antMatchers("/").permitAll()
-            .antMatchers(VERSION + "/instructions").permitAll()
-            .antMatchers(VERSION + "/game").fullyAuthenticated().and()
+            .antMatchers(VERSION + "/game").fullyAuthenticated()
+            .antMatchers("/", VERSION + "/instructions").permitAll().and()
             .cors().and()
             .csrf().ignoringAntMatchers(VERSION + "/game").and()
             .addFilterBefore(new JWTFilter(tokenProvider), BasicAuthenticationFilter.class);

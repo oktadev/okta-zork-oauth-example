@@ -35,10 +35,10 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @RequestMapping("/")
-    public void root(HttpServletResponse res) throws IOException {
-        res.sendRedirect(VERSION +"/instructions");
-    }
+//    @RequestMapping("/")
+//    public void root(HttpServletResponse res) throws IOException {
+//        res.sendRedirect(VERSION +"/instructions");
+//    }
 
     @RequestMapping(VERSION + "/instructions")
     public CommandResponse home(HttpServletRequest req) {

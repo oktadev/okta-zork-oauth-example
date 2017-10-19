@@ -19,6 +19,8 @@ public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
         this.tokenProvider = tokenProvider;
     }
 
+    public static final String VERSION = "/v1";
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
@@ -26,10 +28,10 @@ public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
             .antMatcher("/**")
             .authorizeRequests()
             .antMatchers("/").permitAll()
-            .antMatchers("/v1/instructions").permitAll()
-            .antMatchers("/v1/c").fullyAuthenticated().and()
+            .antMatchers(VERSION + "/instructions").permitAll()
+            .antMatchers(VERSION + "/game").fullyAuthenticated().and()
             .cors().and()
-            .csrf().ignoringAntMatchers("/v1/c").and()
+            .csrf().ignoringAntMatchers(VERSION + "/game").and()
             .addFilterBefore(new JWTFilter(tokenProvider), BasicAuthenticationFilter.class);
     }
 }

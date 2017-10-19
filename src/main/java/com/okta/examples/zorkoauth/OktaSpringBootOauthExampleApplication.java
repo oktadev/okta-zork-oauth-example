@@ -8,6 +8,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import static com.okta.examples.zorkoauth.config.SpringSecurityWebAppConfig.VERSION;
+
 @SpringBootApplication
 public class OktaSpringBootOauthExampleApplication {
 
@@ -23,7 +25,7 @@ public class OktaSpringBootOauthExampleApplication {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/v1/c").allowedOrigins(allowedOrigins);
+				registry.addMapping(VERSION + "/game").allowedOrigins(allowedOrigins);
 			}
 		};
 	}

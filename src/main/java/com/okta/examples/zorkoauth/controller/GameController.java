@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
 
+import static com.okta.examples.zorkoauth.config.SpringSecurityWebAppConfig.VERSION;
+
 @RestController
 public class GameController {
 
@@ -35,10 +37,10 @@ public class GameController {
 
     @RequestMapping("/")
     public void root(HttpServletResponse res) throws IOException {
-        res.sendRedirect("/v1/instructions");
+        res.sendRedirect(VERSION +"/instructions");
     }
 
-    @RequestMapping("/v1/instructions")
+    @RequestMapping(VERSION + "/instructions")
     public CommandResponse home(HttpServletRequest req) {
         String proto = (req.getHeader("x-forwarded-proto") != null) ?
                 req.getHeader("x-forwarded-proto") : req.getScheme() ;
@@ -71,7 +73,7 @@ public class GameController {
         return res;
     }
 
-    @RequestMapping(value = "/v1/c", method = RequestMethod.POST)
+    @RequestMapping(value = VERSION + "/game", method = RequestMethod.POST)
     public @ResponseBody CommandResponse command(
         @RequestBody(required = false) CommandRequest commandRequest,
         HttpServletRequest req,

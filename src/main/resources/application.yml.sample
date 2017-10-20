@@ -2,22 +2,12 @@ server:
   tomcat:
     remote_ip_header: x-forwarded-for
     protocol_header: x-forwarded-proto
-security:
-  oauth2:
-    client:
-      # From OIDC app
-      clientId: # clientId
-      clientSecret: # clientSecret
-      # From Authorization Server's metadata
-      accessTokenUri: # token_endpoint
-      userAuthorizationUri: # authorization_endpoint
-      clientAuthenticationScheme: form
-      scope: openid profile email
-    resource:
-      # from your Auth Server's metadata, check .well-known/openid-configuration if not in .well-known/oauth-authorization-server
-      userInfoUri: # userinfo_endpoint
-      preferTokenInfo: false
-      openIdConfigUri: # /.well-known/openid-configuration uri
+okta:
+  oauth:
+    baseUrl: # <okta org url>
+    issuer: # <okta org url>/oauth2/<auth server id>
+    audience: # auth server configured audience
+    clientId: # client id from oidc app client credentials settings
 cors:
   allowed:
     origins: # list of origins allowed to access this app. Used in conjunction with https://github.com/oktadeveloper/okta-oidc-flows-example

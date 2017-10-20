@@ -11,16 +11,16 @@ import java.util.UUID;
 @Controller
 public class HomeController {
 
-    @Value("#{ @environment['security.oauth2.client.clientId'] }")
+    @Value("#{ @environment['okta.oauth.clientId'] }")
     String clientId;
 
-    @Value("#{ @environment['security.oauth2.client.userAuthorizationUri'] }")
-    String userAuthorizationUri;
+    @Value("#{ @environment['okta.oauth.issuer'] }")
+    String issuer;
 
     @RequestMapping("/")
     public String home(HttpServletRequest req, Model model) {
         model.addAttribute("clientId", clientId);
-        model.addAttribute("userAuthorizationUri", userAuthorizationUri);
+        model.addAttribute("userAuthorizationUri", issuer + "/v1/authorize");
         model.addAttribute("redirectUri", req.getRequestURL());
         model.addAttribute("nonce", UUID.randomUUID().toString());
         model.addAttribute("state", UUID.randomUUID().toString());

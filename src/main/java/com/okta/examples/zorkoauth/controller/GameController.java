@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
 
-import static com.okta.examples.zorkoauth.config.SpringSecurityWebAppConfig.VERSION;
+import static com.okta.examples.zorkoauth.OktaSpringBootOauthExampleApplication.VERSION;
 
 @RestController
 public class GameController {

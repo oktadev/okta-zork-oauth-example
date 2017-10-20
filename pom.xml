@@ -22,22 +22,29 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-        <jjwt.version>0.6.0</jjwt.version>
-        <okta.version>0.6.0</okta.version>
+        <jjwt.version>0.9.0</jjwt.version>
+        <guava.version>19.0</guava.version>
+        <okta.sdk.version>0.7.0</okta.sdk.version>
+        <okta.spring.version>0.1.0</okta.spring.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
+
+        <dependency>
+            <groupId>com.okta.spring</groupId>
+            <artifactId>okta-spring-security-starter</artifactId>
+            <version>${okta.spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <!-- Temporary override untul 2.2.0 makes it into Spring Boot -->
+            <version>2.2.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security.oauth</groupId>
-			<artifactId>spring-security-oauth2</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,37 +58,26 @@
 		<dependency>
 			<groupId>com.okta.sdk</groupId>
 			<artifactId>okta-sdk-api</artifactId>
-			<version>${okta.version}</version>
+			<version>${okta.sdk.version}</version>
 		</dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>fluent-hc</artifactId>
-            <version>4.5.3</version>
-        </dependency>
         <!-- Google Guava used to time zMachine -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>19.0</version>
+            <version>${guava.version}</version>
         </dependency>
         <dependency>
 			<groupId>com.okta.sdk</groupId>
 			<artifactId>okta-sdk-impl</artifactId>
-			<version>${okta.version}</version>
+			<version>${okta.sdk.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.okta.sdk</groupId>
-			<artifactId>okta-sdk-httpclient</artifactId>
-			<version>${okta.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-
         <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+            <groupId>com.okta.sdk</groupId>
+            <artifactId>okta-sdk-httpclient</artifactId>
+            <version>${okta.sdk.version}</version>
+            <scope>runtime</scope>
+        </dependency>
 	</dependencies>
 
 	<build>

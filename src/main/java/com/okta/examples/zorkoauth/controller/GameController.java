@@ -35,44 +35,6 @@ public class GameController {
         this.gameService = gameService;
     }
 
-//    @RequestMapping("/")
-//    public void root(HttpServletResponse res) throws IOException {
-//        res.sendRedirect(VERSION +"/instructions");
-//    }
-
-    @RequestMapping(VERSION + "/instructions")
-    public CommandResponse home(HttpServletRequest req) {
-        String proto = (req.getHeader("x-forwarded-proto") != null) ?
-                req.getHeader("x-forwarded-proto") : req.getScheme() ;
-        String server = req.getServerName();
-        String port = (req.getServerPort() == 80 || req.getServerPort() == 443) ? "" : ":" + req.getServerPort();
-        String baseUrl = proto + "://" + server + port;
-
-        CommandResponse res = new CommandResponse();
-
-        String[] response = {
-                "Welcome to the interactive OAuth2 Text Based Adventure!",
-                "",
-                "In order to play the game, you must:",
-                "    1. Register an account",
-                "    2. Get an access token using your account",
-                "    3. Use the access token to send commands to the game",
-                "",
-                "To use the access token to interact with the game, you send a POST request to the command endpoint (the below example uses httpie):",
-                "    http POST " + baseUrl + "/v1/c Authorization:'Bearer <access token>'",
-                "    http POST " + baseUrl + "/v1/c command='go north' Authorization:'Bearer <access token>'",
-                "Note: if you don't send the command parameter, the response will contain the result of looking around your current location in the game",
-                "",
-                "Part of the game is discovering which language elements work to move you forward in the game.",
-                "If you are impatient, here's a list of all the available commands: http://zork.wikia.com/wiki/Command_List"
-        };
-
-        res.setResponse(response);
-        res.setStatus("SUCCESS");
-
-        return res;
-    }
-
     @RequestMapping(value = VERSION + "/game", method = RequestMethod.POST)
     public @ResponseBody CommandResponse command(
         @RequestBody(required = false) CommandRequest commandRequest,

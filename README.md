@@ -117,7 +117,7 @@ You can easily deploy this app and connect it to your own Okta tenant.
 
     ![implicit application](images/applications-3.png)
     
-    Make note of the Client ID and Client Secret for configuring the app below:
+    Make note of the Client ID for configuring the app below:
     
     ![implicit application](images/applications-4.png)
     

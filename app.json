@@ -17,11 +17,11 @@
       "description": "The client id for the Okta OIDC application",
       "value": "changeme"
     },
-    "OKTA_CLIENT_SECRET": {
-      "description": "The client secret for the Okta OIDC application",
-      "value": "changeme"
+    "OKTA_AUDIENCE": {
+      "description": "The audience configured in the Authorization Server",
+      "value": "api://default"
     },
-    "OKTA_AUTHORIZATION_SERVER_ID": {
+    "OKTA_AUTH_SERVER_ID": {
       "description": "The Okta Authorization Server id",
       "value": "default"
     }

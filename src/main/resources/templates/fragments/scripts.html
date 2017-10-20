@@ -19,8 +19,8 @@
 
             var val = 'http POST \\\n';
             val += '[[${redirectUri}]]v1/game';
-            val += ' \\\ncommand="look"';
             val += ' \\\nAuthorization:"Bearer ' + token + '"';
+            val += ' \\\ncommand="look"';
             httpie.setValue(val);
         };
 

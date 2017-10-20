@@ -18,16 +18,12 @@ But, there's a catch: All interactions with the game must be done using an [Acce
 
     ```
     HTTP/1.1 401
-    Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-    Connection: keep-alive
-    Content-Length: 0
-    Date: Thu, 19 Oct 2017 17:10:32 GMT
-    Expires: 0
-    Pragma: no-cache
     ...
+    {
+        "error": "unauthorized",
+        "error_description": "Full authentication is required to access this resource"
+    }
     ```
-    
-`401` indicates you are unauthorized 
 
 ### Next, try hitting the Zork endpoint with an access token.
 
@@ -74,8 +70,8 @@ But, there's a catch: All interactions with the game must be done using an [Acce
     ```
     http POST \
     https://okta-oauth-zork.herokuapp.com/v1/game \
-    command="go north" \
-    Authorization:"Bearer <access token>"
+    Authorization:"Bearer <access token>" \
+    command="go north"
     ```
     
     ```
@@ -159,13 +155,13 @@ You can deploy this application to Heroku using the friendly purple button below
 
 You'll need some information to properly configure the app:
 
-| Environment Variable         | Example                |
-|------------------------------|------------------------|
-| OKTA_ORG_URL                 | https://micah.okta.com |
-| OKTA_API_TOKEN               | see screenshot above   |
-| OKTA_CLIENT_ID               | see screenshot above   |
-| OKTA_CLIENT_SECRET           | see screenshot above   |
-| OKTA_AUTHORIZATION_SERVER_ID | default                |
+| Environment Variable | Example                |
+|----------------------|------------------------|
+| OKTA_ORG_URL         | https://micah.okta.com |
+| OKTA_API_TOKEN       | see screenshot above   |
+| OKTA_CLIENT_ID       | see screenshot above   |
+| OKTA_AUDIENCE        | api://default          |
+| OKTA_AUTH_SERVER_ID  | default                |
 
 ### Cross Origin Resource Sharing (CORS)
 

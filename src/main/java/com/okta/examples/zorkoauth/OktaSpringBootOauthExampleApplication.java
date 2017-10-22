@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -43,7 +44,8 @@ public class OktaSpringBootOauthExampleApplication {
             public void configure(HttpSecurity http) throws Exception {
                 http
                     .authorizeRequests()
-                    .antMatchers("/", "/images/**", "/css/**", "/js/**", "/favicon.ico").permitAll();
+                    .antMatchers("/", "/images/**", "/css/**", "/js/**", "/favicon.ico").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS,VERSION + "/game").permitAll();
             }
         };
     }

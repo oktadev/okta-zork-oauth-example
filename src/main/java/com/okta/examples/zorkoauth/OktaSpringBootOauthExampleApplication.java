@@ -43,6 +43,7 @@ public class OktaSpringBootOauthExampleApplication {
             @Override
             public void configure(HttpSecurity http) throws Exception {
                 http
+                    .cors().and()
                     .authorizeRequests()
                     .antMatchers("/", "/images/**", "/css/**", "/js/**", "/favicon.ico").permitAll()
                     .antMatchers(HttpMethod.OPTIONS,VERSION + "/game").permitAll();
